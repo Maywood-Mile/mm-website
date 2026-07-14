@@ -1,0 +1,6 @@
+name = "mm-website"
+compatibility_date = "2026-07-14"
+
+[assets]
+directory = "."
+not_found_handling = "404-page"
