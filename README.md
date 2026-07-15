@@ -13,6 +13,26 @@ if the brand system changes, re-copy `tokens/*.css` and `assets/` from there.
 - `llms.txt` — root-level machine-readable summary (emerging convention)
 - `css/` — `fonts.css`, `tokens-*.css` (colors/typography/spacing, copied verbatim), `site.css` (layout/components)
 - `assets/` — fonts (ttf) and logo marks (svg/png), copied from the design system
+- `js/` — `footer.js` (footer divider wrap detection)
+
+## Cache-busting
+
+`site.css` and `footer.js` are linked with a `?v=N` query string in every HTML
+page (e.g. `css/site.css?v=1`). Static hosts (this repo's local dev server,
+Cloudflare Pages) don't send cache-control headers, so browsers can cache
+these two files independently of the HTML that references them — a visitor
+can end up with new HTML paired with an old cached CSS/JS, which silently
+breaks things (mismatched class names, stale logic) with no error.
+
+**Whenever you edit `css/site.css` or `js/footer.js`, bump `?v=N` to `N+1`
+everywhere it's referenced** (all four HTML pages):
+
+```
+grep -rl 'site.css?v=\|footer.js?v=' *.html | xargs sed -i '' 's/?v=1/?v=2/g'
+```
+
+Skip this and returning visitors may see a broken mix of old and new code
+until their cache naturally expires.
 
 ## Local dev
 
