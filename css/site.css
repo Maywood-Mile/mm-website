@@ -161,7 +161,7 @@ main > .wrap > h1 {
   aspect-ratio: 1 / 1;
   background: var(--spruce);
   object-fit: cover;
-  object-position: top center;
+  object-position: center;
   margin: var(--space-10) auto;
 }
 
