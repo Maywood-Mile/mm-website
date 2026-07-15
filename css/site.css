@@ -150,18 +150,18 @@ main > .wrap > h1 {
   margin: 0 auto var(--space-10);
 }
 
-/* Approach-page photo — landscape crop, dropped mid-flow rather than
-   leading the page, so it reads as a moment inside the narrative rather
-   than a portrait greeting. Same flat-spruce no-photo treatment. */
+/* Approach-page photo — square format matching the Home headshot.
+   Same flat-spruce no-photo treatment. */
 .approach-photo {
   width: 100%;
   max-width: 660px;
   /* see .headshot: explicit height keeps a future img's height="" attribute
      from overriding aspect-ratio. */
   height: auto;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1 / 1;
   background: var(--spruce);
   object-fit: cover;
+  object-position: top center;
   margin: var(--space-10) auto;
 }
 
